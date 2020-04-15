@@ -11,6 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 import java.util.Properties;
 
 public class HibernateUtil {
+
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
@@ -28,7 +29,7 @@ public class HibernateUtil {
 
             settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-            settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+            settings.put(Environment.HBM2DDL_AUTO, "create");
 
             configuration.setProperties(settings);
             configuration.addAnnotatedClass(Item.class);
