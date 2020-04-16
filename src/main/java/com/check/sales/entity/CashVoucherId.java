@@ -4,27 +4,26 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class CheckListId implements Serializable {
+public class CashVoucherId implements Serializable {
 
-    private int purchaseOrderId;
+    private int saleId;
 
     private int inventoryItemId;
 
-
-    public CheckListId() {
+    public CashVoucherId() {
     }
 
-    public CheckListId(int purchaseOrderId, int inventoryItemId) {
-        this.purchaseOrderId = purchaseOrderId;
+    public CashVoucherId(int saleId, int inventoryItemId) {
+        this.saleId = saleId;
         this.inventoryItemId = inventoryItemId;
     }
 
-    public int getPurchaseOrderId() {
-        return purchaseOrderId;
+    public int getSaleId() {
+        return saleId;
     }
 
-    public void setPurchaseOrderId(int purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
+    public void setSaleId(int saleId) {
+        this.saleId = saleId;
     }
 
     public int getInventoryItemId() {

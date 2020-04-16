@@ -16,6 +16,9 @@ public class InventoryItem {
     @Column
     private String name;
 
+    @Column(length = 13)
+    private String barcode;
+
     @Column(name = "purchase_price")
     private int purchasePrice;
 
@@ -29,10 +32,21 @@ public class InventoryItem {
     @Column
     private Double balance = 0.0;
 
-    public InventoryItem(String name, int purchasePrice, int retailPrice) {
+    public InventoryItem() {
+    }
+
+    public InventoryItem(String name,
+                         String barcode,
+                         int purchasePrice,
+                         int retailPrice,
+                         Enum amountType,
+                         Double balance) {
         this.name = name;
+        this.barcode = barcode;
         this.purchasePrice = purchasePrice;
         this.retailPrice = retailPrice;
+        this.amountType = amountType;
+        this.balance = balance;
     }
 
     public int getId() {
@@ -51,6 +65,14 @@ public class InventoryItem {
         this.name = name;
     }
 
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
     public int getPurchasePrice() {
         return purchasePrice;
     }
@@ -65,5 +87,21 @@ public class InventoryItem {
 
     public void setRetailPrice(int retailPrice) {
         this.retailPrice = retailPrice;
+    }
+
+    public Enum getAmountType() {
+        return amountType;
+    }
+
+    public void setAmountType(Enum amountType) {
+        this.amountType = amountType;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }

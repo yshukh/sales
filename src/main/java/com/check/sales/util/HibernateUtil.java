@@ -1,8 +1,8 @@
 package com.check.sales.util;
 
-import com.check.sales.entity.CheckItem;
 import com.check.sales.entity.InventoryItem;
-import com.check.sales.entity.PurchaseOrder;
+import com.check.sales.entity.Sale;
+import com.check.sales.entity.SaleItem;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -34,8 +34,8 @@ public class HibernateUtil {
 
             configuration.setProperties(settings);
             configuration.addAnnotatedClass(InventoryItem.class);
-            configuration.addAnnotatedClass(CheckItem.class);
-            configuration.addAnnotatedClass(PurchaseOrder.class);
+            configuration.addAnnotatedClass(SaleItem.class);
+            configuration.addAnnotatedClass(Sale.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
