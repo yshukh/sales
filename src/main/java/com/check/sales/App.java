@@ -1,7 +1,8 @@
 package com.check.sales;
 
-import com.check.sales.dao.PurchaseOrderDao;
-import com.check.sales.entity.Item;
+import com.check.sales.dao.GeneralCrudDao;
+import com.check.sales.entity.CheckItem;
+import com.check.sales.entity.InventoryItem;
 import com.check.sales.entity.PurchaseOrder;
 
 import java.util.ArrayList;
@@ -10,22 +11,23 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) {
-        PurchaseOrderDao purchaseOrderDao = new PurchaseOrderDao();
+//        TODO amount of item where to save?
+        InventoryItem coca = new InventoryItem("Coca-Cola", 10, 15);
+        InventoryItem lays = new InventoryItem("Lays", 20, 25);
+
         PurchaseOrder purchaseOrder = new PurchaseOrder();
 
-        List<Item> items = new ArrayList<>();
-        Item itemOne = new Item("Lays", 1, 25);
-        Item itemTwo = new Item("Coca-cola", 1, 20);
-        items.add(itemOne);
-        items.add(itemTwo);
+        CheckItem checkItemOne = new CheckItem(purchaseOrder, coca);
+        checkItemOne.setAmount(2);
+        CheckItem checkItemTwo = new CheckItem(purchaseOrder, lays);
+        checkItemTwo.setAmount(1);
+        List<CheckItem> checkItemList = new ArrayList<>();
+        checkItemList.add(checkItemOne);
+        checkItemList.add(checkItemTwo);
 
-        purchaseOrder.setItems(items);
+        purchaseOrder.setOrderItems(checkItemList);
 
-        purchaseOrderDao.save(purchaseOrder);
-
-        List<PurchaseOrder> purchaseOrders = purchaseOrderDao.get();
-        purchaseOrders.forEach(curPurchaseOrder -> {
-            System.out.println(curPurchaseOrder.toString());
-        });
+        GeneralCrudDao<PurchaseOrder> poDao = new GeneralCrudDao<>(PurchaseOrder.class);
+        poDao.save(purchaseOrder);
     }
 }

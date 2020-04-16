@@ -1,8 +1,8 @@
 package com.check.sales.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "purchase_order")
@@ -10,15 +10,16 @@ public class PurchaseOrder {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "item_id"),
-            inverseJoinColumns = @JoinColumn(name = "purchase_order_id")
-    )
-    private List<Item> items;
+    @OneToMany(mappedBy = "purchaseOrder",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<CheckItem> orderItems = new ArrayList<>();
+
+    public PurchaseOrder() {
+    }
 
     public int getId() {
         return id;
@@ -28,25 +29,11 @@ public class PurchaseOrder {
         this.id = id;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<CheckItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    @Override
-    public String toString() {
-        return "PurchaseOrder{" +
-                "id=" + id +
-                ", items=[" + items.stream()
-                                .map(item ->
-                                            item.getId() + " "
-                                                + item.getName() + " "
-                                                + item.getPrice() + " "
-                                                + item.getCount())
-                                .collect(Collectors.joining(",")) + "]" +
-                '}';
+    public void setOrderItems(List<CheckItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
