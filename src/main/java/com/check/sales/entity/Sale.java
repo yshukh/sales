@@ -18,6 +18,7 @@ public class Sale {
 
     @OneToMany(mappedBy = "sale",
             cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
             orphanRemoval = true)
     private List<SaleItem> saleItems = new ArrayList<>();
 
