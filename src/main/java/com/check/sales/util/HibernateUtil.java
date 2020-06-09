@@ -1,7 +1,8 @@
 package com.check.sales.util;
 
-import com.check.sales.entity.Item;
-import com.check.sales.entity.PurchaseOrder;
+import com.check.sales.entity.InventoryItem;
+import com.check.sales.entity.Sale;
+import com.check.sales.entity.SaleItem;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -11,6 +12,7 @@ import org.hibernate.service.ServiceRegistry;
 import java.util.Properties;
 
 public class HibernateUtil {
+
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
@@ -28,11 +30,12 @@ public class HibernateUtil {
 
             settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-            settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+            settings.put(Environment.HBM2DDL_AUTO, "create");
 
             configuration.setProperties(settings);
-            configuration.addAnnotatedClass(Item.class);
-            configuration.addAnnotatedClass(PurchaseOrder.class);
+            configuration.addAnnotatedClass(InventoryItem.class);
+            configuration.addAnnotatedClass(SaleItem.class);
+            configuration.addAnnotatedClass(Sale.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
