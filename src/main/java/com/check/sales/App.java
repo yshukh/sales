@@ -30,20 +30,112 @@ public class App {
     protected static void fillInventoryItems(final InventoryItemDao inventoryItemDao) {
         InventoryItem coca = new InventoryItem(
                 "Coca-Cola",
-                "1234567890123",
+                "1234567890120",
                 10,
                 15,
                 AmountType.PIECE,
                 10.0
         );
+
         InventoryItem lays = new InventoryItem(
                 "Lays",
+                "1234567890121",
+                20,
+                25,
+                AmountType.PIECE,
+                20.0
+        );
+
+        InventoryItem chickenFillet = new InventoryItem(
+                "Chicken fillet",
+                "1234567890122",
+                20,
+                25,
+                AmountType.WEIGHT,
+                20.0
+        );
+
+        InventoryItem trout = new InventoryItem(
+                "Trout",
                 "1234567890123",
                 20,
                 25,
                 AmountType.WEIGHT,
                 20.0
         );
+
+        InventoryItem potato = new InventoryItem(
+                "Potato",
+                "1234567890124",
+                20,
+                25,
+                AmountType.WEIGHT,
+                20.0
+        );
+
+        InventoryItem rice = new InventoryItem(
+                "Rice",
+                "1234567890125",
+                20,
+                25,
+                AmountType.PIECE,
+                20.0
+        );
+
+        InventoryItem carpathianSpring = new InventoryItem(
+                "Carpathian spring",
+                "1234567890126",
+                20,
+                25,
+                AmountType.PIECE,
+                20.0
+        );
+
+        InventoryItem hennessy = new InventoryItem(
+                "Hennessy X.O",
+                "1234567890127",
+                20,
+                25,
+                AmountType.PIECE,
+                20.0
+        );
+
+        InventoryItem ham = new InventoryItem(
+                "Pork ham",
+                "1234567890128",
+                20,
+                25,
+                AmountType.WEIGHT,
+                20.0
+        );
+
+        InventoryItem chocolate = new InventoryItem(
+                "J.D. Gross dark chocolate 95% cacao",
+                "1234567890129",
+                20,
+                25,
+                AmountType.PIECE,
+                20.0
+        );
+
+        InventoryItem corn = new InventoryItem(
+                "Canned kernel corn",
+                "1234567890130",
+                20,
+                25,
+                AmountType.PIECE,
+                20.0
+        );
+
+        inventoryItemDao.save(chickenFillet);
+        inventoryItemDao.save(trout);
+        inventoryItemDao.save(potato);
+        inventoryItemDao.save(rice);
+        inventoryItemDao.save(carpathianSpring);
+        inventoryItemDao.save(hennessy);
+        inventoryItemDao.save(ham);
+        inventoryItemDao.save(chocolate);
+        inventoryItemDao.save(corn);
         inventoryItemDao.save(coca);
         inventoryItemDao.save(lays);
     }

@@ -16,7 +16,7 @@ public class InventoryItemDao extends GeneralCrudDao<InventoryItem> {
     public List<InventoryItem> getFirstByNamePrefix(int amount, String namePrefix) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<InventoryItem> query =
-                    session.createQuery("FROM InventoryItem as ii WHERE ii.name LIKE :name")
+                    session.createQuery("FROM InventoryItem as ii WHERE ii.name LIKE :name ORDER BY name")
                             .setParameter("name", namePrefix + "%");
             query.setMaxResults(amount);
             return query.list();
