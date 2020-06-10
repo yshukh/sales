@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Deprecated
 public class StringSearchable implements Searchable<String, String> {
 
     private List<String> terms = new ArrayList<>();
@@ -11,7 +12,6 @@ public class StringSearchable implements Searchable<String, String> {
     public StringSearchable(List<String> terms) {
         this.terms.addAll(terms);
     }
-
 
     @Override
     public Collection<String> search(String value) {

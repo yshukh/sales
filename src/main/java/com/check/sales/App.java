@@ -1,26 +1,21 @@
 package com.check.sales;
 
-import com.check.sales.dao.GeneralCrudDao;
+import com.check.sales.dao.InventoryItemDao;
 import com.check.sales.entity.InventoryItem;
 import com.check.sales.entity.attribute.AmountType;
+import com.check.sales.view.InventoryItemSearchable;
 import com.check.sales.view.SaleWindow;
-import com.check.sales.view.StringSearchable;
 
 import javax.swing.*;
-import java.util.stream.Collectors;
 
 public class App {
 
-    public static StringSearchable items;
-    //TODO add InventoryItemDto and map it to the combobox searching machine
+    public static InventoryItemSearchable items;
+
     public static void main(String[] args) {
-        GeneralCrudDao<InventoryItem> saleItemDao = new GeneralCrudDao<>(InventoryItem.class);
-        App.fillInventoryItems(saleItemDao);
-        items = new StringSearchable(
-                saleItemDao.get().stream()
-                        .map(InventoryItem::getName)
-                        .collect(Collectors.toList())
-        );
+        InventoryItemDao inventoryItemDao = new InventoryItemDao();
+        App.fillInventoryItems(inventoryItemDao);
+        items = new InventoryItemSearchable(inventoryItemDao);
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +27,7 @@ public class App {
         });
     }
 
-    protected static void fillInventoryItems(final GeneralCrudDao<InventoryItem> saleItemDao) {
+    protected static void fillInventoryItems(final InventoryItemDao inventoryItemDao) {
         InventoryItem coca = new InventoryItem(
                 "Coca-Cola",
                 "1234567890123",
@@ -49,7 +44,7 @@ public class App {
                 AmountType.WEIGHT,
                 20.0
         );
-        saleItemDao.save(coca);
-        saleItemDao.save(lays);
+        inventoryItemDao.save(coca);
+        inventoryItemDao.save(lays);
     }
 }

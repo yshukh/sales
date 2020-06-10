@@ -1,5 +1,7 @@
 package com.check.sales.view;
 
+import com.check.sales.dto.InventoryItemDto;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -11,13 +13,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class AutocompleteJComboBox extends JComboBox {
     static final long serialVersionUID = 4321421L;
-    private final Searchable<String, String> searchable;
+    private final Searchable<InventoryItemDto, String> searchable;
 
-    public AutocompleteJComboBox(Searchable<String, String> s) {
+    public AutocompleteJComboBox(Searchable<InventoryItemDto, String> s) {
         super();
         this.searchable = s;
         setEditable(true);
@@ -43,12 +44,13 @@ public class AutocompleteJComboBox extends JComboBox {
 
                 public void update() {
                     SwingUtilities.invokeLater(() -> {
-                        List<String> founds = new ArrayList<>(searchable.search(tc.getText()));
-                        Set<String> foundSet = new HashSet<>();
-                        for (String s1 : founds) {
+                        List<InventoryItemDto> founds = new ArrayList<>(searchable.search(tc.getText()));
+                        Set<InventoryItemDto> foundSet = new HashSet<>();
+                        for (InventoryItemDto s1 : founds) {
                             foundSet.add(s1);
                         }
-                        founds = founds.stream().sorted().collect(Collectors.toList());
+//                        TODO InventoryItemDto should implement Sortable
+//                        founds = founds.stream().sorted().collect(Collectors.toList());
                         setEditable(false);
                         removeAllItems();
                         //if founds contains the search text, then only add once.
@@ -57,7 +59,7 @@ public class AutocompleteJComboBox extends JComboBox {
                             addItem(tc.getText());
                         }
 
-                        for (String s1 : founds) {
+                        for (InventoryItemDto s1 : founds) {
                             addItem(s1);
                         }
                         setPopupVisible(true);

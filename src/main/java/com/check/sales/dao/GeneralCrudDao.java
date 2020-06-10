@@ -3,6 +3,7 @@ package com.check.sales.dao;
 import com.check.sales.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -30,7 +31,15 @@ public class GeneralCrudDao<T> {
 
     public List<T> get() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from " + type.getSimpleName(), type).list();
+            return session.createQuery("FROM " + type.getSimpleName(), type).list();
+        }
+    }
+
+    public List<T> getFirst(int amount) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<T> query = session.createQuery("FROM " + type.getSimpleName(), type);
+            query.setMaxResults(amount);
+            return query.list();
         }
     }
 
