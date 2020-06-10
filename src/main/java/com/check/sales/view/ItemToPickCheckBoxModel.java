@@ -4,6 +4,7 @@ import com.check.sales.entity.InventoryItem;
 
 import javax.swing.*;
 
+@Deprecated
 public class ItemToPickCheckBoxModel extends DefaultComboBoxModel<InventoryItem> {
 
     public ItemToPickCheckBoxModel(InventoryItem[] items) {
