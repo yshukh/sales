@@ -67,7 +67,6 @@ public class SaleWindow extends JFrame {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         itemToPick = new AutocompleteJComboBox(App.items);
     }
 }
