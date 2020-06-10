@@ -7,14 +7,14 @@ import javax.persistence.*;
 public class SaleItem {
 
     @EmbeddedId
-    private CashVoucherId cashVoucherId;
+    private SaleItemId saleItemId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sale_id")
     @MapsId("saleId")
     private Sale sale;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "inventory_item_id")
     @MapsId("inventoryItemId")
     private InventoryItem inventoryItem;
@@ -28,15 +28,15 @@ public class SaleItem {
     public SaleItem(Sale sale, InventoryItem inventoryItem) {
         this.sale = sale;
         this.inventoryItem = inventoryItem;
-        this.cashVoucherId = new CashVoucherId(sale.getId(), inventoryItem.getId());
+        this.saleItemId = new SaleItemId(sale.getId(), inventoryItem.getId());
     }
 
-    public CashVoucherId getCashVoucherId() {
-        return cashVoucherId;
+    public SaleItemId getSaleItemId() {
+        return saleItemId;
     }
 
-    public void setCashVoucherId(CashVoucherId cashVoucherId) {
-        this.cashVoucherId = cashVoucherId;
+    public void setSaleItemId(SaleItemId saleItemId) {
+        this.saleItemId = saleItemId;
     }
 
     public Sale getSale() {
