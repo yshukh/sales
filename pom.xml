@@ -6,7 +6,7 @@
 
     <groupId>com.check.sales</groupId>
     <artifactId>sales_self_employer</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT-preparing</version>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
